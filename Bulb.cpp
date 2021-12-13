@@ -1,11 +1,13 @@
 #include "Bulb.h"
 
-Bulb::Bulb(GraphicsInfo* r_GfxInfo) : Component(r_GfxInfo)
-{}
+Bulb::Bulb(GraphicsInfo* r_GfxInfo,bool IsOn) : Component(r_GfxInfo)
+{
+	this->IsOn = IsOn;
+}
 
 void Bulb::Draw(UI* pUI)
 {
-	pUI->DrawBulb(*m_pGfxInfo);
+	pUI->DrawBulb(*m_pGfxInfo,IsSelected,IsOn);
 
 }
 

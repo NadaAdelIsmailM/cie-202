@@ -1,15 +1,15 @@
 #pragma once
-#include ".\Actions\action.h"
-#include ".\Components\Resistor.h"
 
-class ActionAddBulb : public Action
+#include ".\Actions\action.h"
+#include ".\Components\Connection.h"
+
+class ActionAddConnec : public Action
 {
 private:
-	int Cx, Cy;
 	int x1, y1, x2, y2;
 public:
-	ActionAddBulb(ApplicationManager* pApp);
-	virtual ~ActionAddBulb(void);
+	ActionAddConnec(ApplicationManager* pApp);
+	virtual ~ActionAddConnec(void);
 	virtual void Execute();
 	virtual void Undo();
 	virtual void Redo();

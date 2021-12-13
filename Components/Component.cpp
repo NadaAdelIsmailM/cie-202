@@ -13,6 +13,18 @@ Component::Component()
 
 }
 
+bool Component::IsInRegion(int m_x, int m_y) const {
+		if ((m_pGfxInfo->PointsList[0].x < m_x) && (m_x < m_pGfxInfo->PointsList[1].x) && (m_pGfxInfo->PointsList[0].y < m_y) && (m_y < m_pGfxInfo->PointsList[1].y))
+			return true;
+		else
+			return false;
+
+}
+
+
+
 Component::~Component()
-{}
+{
+
+}
 

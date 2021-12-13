@@ -98,8 +98,12 @@ ActionType UI::GetUserAction() const
 			switch (ClickedItemOrder)
 			{
 			case ITM_RES:	return ADD_RESISTOR;
+			case ITM_BULB:	return ADD_LAMP;
+			case ITM_BATTERY:	return ADD_BATTERY;
+			case ITM_SWITCH:	return ADD_SWITCH;
+			case ITM_GRND:	return ADD_GRND;
 			case ITM_BUZZ:	return ADD_BUZZER;
-			case ITM_BULB:	return ADD_BULB;
+			case ITM_FUSE:	return ADD_FUSE;
 			case ITM_CONNEC:	return ADD_CONNECTION;
 			
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
@@ -183,12 +187,15 @@ void UI::CreateDesignToolBar()
 
 	//First prepare List of images for each menu item
 	string MenuItemImages[ITM_DSN_CNT];
-	MenuItemImages[ITM_RES] = "images\\Menu\\Menu_Resistor.jpg";
-	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
-	MenuItemImages[ITM_BUZZ] = "images\\Menu\\Menu_Buzzer.jpg";
-	MenuItemImages[ITM_BULB] = "images\\Menu\\Menu_Bulb.jpg";
-	MenuItemImages[ITM_CONNEC] = "images\\Menu\\Menu_Wire.jpg";
-
+	MenuItemImages[ITM_RES] = "Images\\Menu\\Menu_Resistor.jpg";
+	MenuItemImages[ITM_EXIT] = "Images\\Menu\\Menu_Exit.jpg";
+	MenuItemImages[ITM_BUZZ] = "Images\\Menu\\Menu_Buzzer.jpg";
+	MenuItemImages[ITM_BULB] = "Images\\Menu\\Menu_Bulb.jpg";
+	MenuItemImages[ITM_CONNEC] = "Images\\Menu\\Menu_Wire.jpg";
+	MenuItemImages[ITM_BATTERY] = "Images\\Menu\\Menu_Battery.jpg";
+	MenuItemImages[ITM_SWITCH] = "Images\\Menu\\Menu_Switch.jpg";
+	MenuItemImages[ITM_GRND] = "Images\\Menu\\Menu_Ground.jpg";
+	MenuItemImages[ITM_FUSE] = "Images\\Menu\\Menu_Fuse.jpg";
 	//TODO: Prepare image for each menu item and add it to the list
 
 	//Draw menu item one image at a time
@@ -240,13 +247,17 @@ void UI::DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected) const
 	pWind->DrawImage(BuzzImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
 }
 //TODO: Add similar functions to draw all other components
-void UI::DrawBulb(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawBulb(const GraphicsInfo& r_GfxInfo, bool selected,bool IsOn) const
 {
 	string BuzzImage;
-	if (selected)
-		BuzzImage = "Images\\Comp\\Bulb_HI.jpg";
-	else
-		BuzzImage = "Images\\Comp\\Bulb.jpg";
+	if (selected && IsOn)
+		BuzzImage = "Images\\Comp\\Bulb_ON_HI.jpg";
+	else if (selected && (!IsOn))
+		BuzzImage = "Images\\Comp\\Bulb_OFF_HI.jpg";
+	else if ((!selected) && IsOn)
+		BuzzImage = "Images\\Comp\\Bulb_ON.jpg";
+	else if ((!selected) && (!IsOn))
+		BuzzImage = "Images\\Comp\\Bulb_OFF.jpg";
 
 
 	pWind->DrawImage(BuzzImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
@@ -254,19 +265,45 @@ void UI::DrawBulb(const GraphicsInfo& r_GfxInfo, bool selected) const
 
 
 
-void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const
+void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected) const
 {
-	string ConnecImage;
 	if (selected)
-		ConnecImage = "Images\\Comp\\Wire_HI.jpg";
+		pWind->SetPen(RED, 6);
 	else
-		ConnecImage = "Images\\Comp\\Wire.jpg";
+		pWind->SetPen(BLACK, 5);
+	
+	pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y, FRAME);
+	
+}
 
+void UI::DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string BattImage;
+	if (selected)
+		BattImage = "Images\\Comp\\Battery_HI.jpg";	//use image of highlighted Battery
+	else
+		BattImage = "Images\\Comp\\Battery.jpg";	//use image of the normal battery
 
-	pWind->DrawImage(ConnecImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+	//Draw battery at Gfx_Info (1st corner)
+	pWind->DrawImage(BattImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
 }
 
 
+
+
+
+//the function which draws the ground
+void UI::DrawGround(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string GroundImage;
+	if (selected)
+		GroundImage = "Images\\Comp\\Ground_HI.jpg";	//use image of highlighted ground
+	else
+		GroundImage = "Images\\Comp\\Ground.jpg";	//use image of the normal ground
+
+	//Draw ground at Gfx_Info (1st corner)
+	pWind->DrawImage(GroundImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
 UI::~UI()
 {
 	delete pWind;

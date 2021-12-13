@@ -1,7 +1,8 @@
 #include "Resistor.h"
 
 Resistor::Resistor(GraphicsInfo *r_GfxInfo):Component(r_GfxInfo)
-{}
+{
+}
 
 void Resistor::Draw(UI* pUI)
 {

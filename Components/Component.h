@@ -4,7 +4,7 @@
 #include "..\Defs.h"
 #include "..\UI\UI.h"
 #include "Connection.h"
-
+#include"..\ActionAddConnec.h"
 
 //Base class for all components (resistor, capacitor,....etc) .
 class Component
@@ -31,11 +31,10 @@ public:
 	//void setTerm2Volt(double v);		//sets the voltage at terminal2
 	//double getTerm1Volt();				//returns the voltage at terminal1
 	//double getTerm2Volt();				//returns the voltage at terminal2
-
 	virtual void Operate() = 0;	//Calculates the output voltage according to the inputs
 	virtual void Draw(UI* ) = 0;	//for each component to Draw itself
-	
-	
+	bool IsInRegion(int m_x, int m_y)const;
+
 	//virtual int GetOutPinStatus()=0;	//returns status of outputpin if LED, return -1
 	//virtual int GetInputPinStatus(int n)=0;	//returns status of Inputpin # n if SWITCH, return -1
 

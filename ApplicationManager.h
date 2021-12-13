@@ -10,19 +10,19 @@
 class ApplicationManager
 {
 
-	enum { MaxCompCount = 200 };	//Max no of Components	
+	enum { MaxCompCount = 200};	//Max no of Components	
 
 private:
-	int CompCount;		//Actual number of Components
+	int CompCount;//Actual number of Components
+	int ConnCount;
 	Component* CompList[MaxCompCount];	//List of all Components (Array of pointers)
-
+	Connection* ConnList[MaxCompCount];
 	UI* pUI; //pointer to the UI
 
 
-public:
-
 
 public:	
+
 	ApplicationManager(); //constructor
 
 	//Reads the required action from the user and returns the corresponding action type
@@ -39,6 +39,8 @@ public:
 
 	//Adds a new component to the list of components
 	void AddComponent(Component* pComp);
+	void AddConnection(Connection* pConn);
+	bool ValidConnectionPoint(int x, int y,const Component* c1);
 
 	//destructor
 	~ApplicationManager();
