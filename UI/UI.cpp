@@ -234,7 +234,45 @@ void UI::DrawResistor(const GraphicsInfo &r_GfxInfo, bool selected) const
 	//Draw Resistor at Gfx_Info (1st corner)
 	pWind->DrawImage(ResImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
 }
+void UI::CreateSimulationToolBar()
+{
+	AppMode = SIMULATION;	//Simulation Mode
 
+	string MenuItemImages[ITM_SIM_CNT];
+	MenuItemImages[ITM_CIRC_SIM] = "images\\Menu\\Menu_Resistor.jpg";
+	MenuItemImages[ITM_SIM_EXT] = "images\\Menu\\switch.jpg";
+
+	//Draw menu item one image at a time
+	for (int i = 0; i < ITM_SIM_CNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
+
+
+	//Draw a line under the toolbar
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(0, ToolBarHeight, width, ToolBarHeight);
+}
+void UI::DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string SwitchImage;
+	if (selected)
+		SwitchImage = "Images\\Menu\\Switchclosed.jpg";	//use image of closed switch
+	else
+		SwitchImage = "Images\\Menu\\switchopen.jpg";	//use image of the open switch
+
+	//Draw Resistor at Gfx_Info (1st corner)
+	pWind->DrawImage(SwitchImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
+void UI::DrawFuse(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string FuseImage;
+	if (selected)
+		FuseImage = "Images\\Menu\\coloredfuse.jpg";	//use image of highlighted fuse
+	else
+		FuseImage = "Images\\Menu\\fuse.jpg";	//use image of the normal fuse
+
+	//Draw Resistor at Gfx_Info (1st corner)
+	pWind->DrawImage(FuseImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
 void UI::DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected) const
 {
 	string BuzzImage;
@@ -303,6 +341,17 @@ void UI::DrawGround(const GraphicsInfo& r_GfxInfo, bool selected) const
 
 	//Draw ground at Gfx_Info (1st corner)
 	pWind->DrawImage(GroundImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
+void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+		string ConnectionImage;
+		if (selected)
+			ConnectionImage = "Images\\Menu\\coloredfuse.jpg";	//use image of highlighted fuse
+		else
+			ConnectionImage = "Images\\Menu\\fuse.jpg";	//use image of the normal fuse
+
+		//Draw Resistor at Gfx_Info (1st corner)
+		pWind->DrawImage(ConnectionImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
 }
 UI::~UI()
 {
