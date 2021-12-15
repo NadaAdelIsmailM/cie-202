@@ -13,3 +13,6 @@ void Ground::Operate()
 {
 
 }
+void Ground::loadcircuit() {
+
+}
