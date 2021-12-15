@@ -112,69 +112,101 @@ ApplicationManager::~ApplicationManager()
 	delete pUI;
 	
 }
-void ApplicationManager::loadcircuit() {
+void ApplicationManager:: Load(ifstream& myfile, string files_name){
 	ifstream myfile;
-	myfile.open("images\\Menu\\myfile.txt");
+	myfile.open(files_name);
+	if (!file.fail()){
 	int x;
 	myfile >> x;
-	
 	Action* pAct = nullptr;
 	string type, id, label;
 	int value, topx, topy;
 	for (int i = 1; i <= x; i++) {
 		
 		myfile >> type >> id >> label >> value >> topx >> topy;
+		GI= new GraphicsInfo(2);
+		GI->PointsList[0].x = graphicInfoX;
+		GI->PointsList[0].y = graphicInfoY;
+		GI->PointsList[1].x = graphicInfoX + pUI->getCompWidth();;
+		GI->PointsList[1].y = graphicInfoY + pUI->getCompHeight();
 		{
 			//assign the coordinates to the component which will be loaded on the interface
 		
 
 						if (type == "RES") {
 
-							GraphicsInfo* PgInfo = new GraphicsInfo(2);  //pointer to graphics info
+							/*GraphicsInfo* PgInfo = new GraphicsInfo(2);  //pointer to graphics info
 							PgInfo->PointsList[i].x = topx; //load coordinates
-							PgInfo->PointsList[i].y = topy;
-							Component* cmp = new Resistor(PgInfo);
-							cmp->loadcircuit();
+							PgInfo->PointsList[i].y = topy;*/
+							Resistor* cmp = new Resistor(GI);
+							cmp->Load(value, label);
+							AddComponent(comp);
 						}
 						else if (type == "SWT")
 						{
-							GraphicsInfo* PgInfo = new GraphicsInfo(2);  //pointer to graphics info
-							PgInfo->PointsList[i].x = topx; //load coordinates
-							PgInfo->PointsList[i].y = topy;
-							Component* cmp = new Switch(PgInfo);
-							cmp->loadcircuit();
+							Switchr* cmp = new Switch(GI);
+							cmp->Load(value, label);
+							AddComponent(comp);
 						}
 						else if (type == "FUSE") {
-							GraphicsInfo* PgInfo = new GraphicsInfo(2);  //pointer to graphics info
-							PgInfo->PointsList[i].x = topx; //load coordinates
-							PgInfo->PointsList[i].y = topy;
-							Component* cmp = new Switch(PgInfo);
-							cmp->loadcircuit();
+							fuse* cmp = new fuse(GI);
+							cmp->Load(value, label);
+							AddComponent(comp);
 						}
 						else if (type == "BAT") {
-							GraphicsInfo* PgInfo = new GraphicsInfo(2);  //pointer to graphics info
+							/*GraphicsInfo* PgInfo = new GraphicsInfo(2);  //pointer to graphics info
 							PgInfo->PointsList[i].x = topx; //load coordinates
 							PgInfo->PointsList[i].y = topy;
 							Component* cmp = new Battery(PgInfo);
-							cmp->loadcircuit();
+							cmp->loadcircuit();*/
+							Battery* cmp = new Battery(GI);
+							cmp->Load(value, label);
+							AddComponent(comp);
 							
 						}
 						else if (type == "BLB") {
-							GraphicsInfo* PgInfo = new GraphicsInfo(2);  //pointer to graphics info
-							PgInfo->PointsList[i].x = topx; //load coordinates
-							PgInfo->PointsList[i].y = topy;
-							Component* cmp = new Bulb(PgInfo);
-							cmp->loadcircuit();
+							Bulb* cmp = new Bulb(GI);
+							cmp->Load(value, label);
+							AddComponent(comp);
 							
 						}
 						else if (type == "GND") {
-							GraphicsInfo* PgInfo = new GraphicsInfo(2);  //pointer to graphics info
-							PgInfo->PointsList[i].x = topx; //load coordinates
-							PgInfo->PointsList[i].y = topy;
-							Component* cmp = new Ground(PgInfo);
-							cmp->loadcircuit();
+							Ground* cmp = new Ground(GI);
+							cmp->Load(value, label);
+							AddComponent(comp);
 							
 						}
+			if(i==x&& type=="Connections"){
+				int comp1, comp2, graphicspoint;
+				myfile >> num;
+				while (myfile >> comp1) {
+					myfile >> comp2;
+
+					myfile >> graphicspoint;
+					GI = new GraphicsInfo(2);
+					GI->PointsList[0].x = graphicspoint;
+					myfile >> graphicspoint;
+					GI->PointsList[0].y = graphicspoint;
+					myfile >> graphicspoint;
+					GI->PointsList[1].x = graphicspoint;
+					myfile >> graphicspoint;
+					GI->PointsList[1].y = graphicspoint;
+					Connection* C = new Connection(GI);
+					C->Load(CompList[comp1 - 1], CompList[comp2 - 1]);
+					AddConnection(C);
+				}
+
+
+
+			}
+
+		}
+
+
+
+	}
+	else
+		pUI->PrintMsg("File open failure! ");
 				}
 			}
 		
