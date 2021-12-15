@@ -33,6 +33,7 @@ public:
 	//double getTerm2Volt();				//returns the voltage at terminal2
 	virtual void Operate() = 0;	//Calculates the output voltage according to the inputs
 	virtual void Draw(UI* ) = 0;	//for each component to Draw itself
+	virtual void loadcircuit() = 0;
 	bool IsInRegion(int m_x, int m_y)const;
 
 	//virtual int GetOutPinStatus()=0;	//returns status of outputpin if LED, return -1
