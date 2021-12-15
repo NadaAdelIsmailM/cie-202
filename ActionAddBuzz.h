@@ -15,6 +15,7 @@ public:
 	virtual void Execute();
 	virtual void Undo();
 	virtual void Redo();
+	virtual void loadcircuit();
 
 
 };
