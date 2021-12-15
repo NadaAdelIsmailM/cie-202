@@ -8,15 +8,12 @@ Loadcircuit::Loadcircuit(ApplicationManager* pApp) :Action(pApp) {
 
 }
 
-
+Loadcircuit::~Load(void){}
 
 void Loadcircuit::Execute() {
 
-	ifstream myfile;
-	myfile.open("images\\Menu\\myfile.txt");
-	int x;
-	myfile >> x;
-	pManager->loadcircuit();
+	UI* pUI = pManager->GetUI();
+	pManager->Loadcircuit(myfile, pUI->GetSrting("Name of file .txt:");
 }
 
 void Loadcircuit::Undo() {}
