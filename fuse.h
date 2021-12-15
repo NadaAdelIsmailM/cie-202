@@ -7,5 +7,5 @@ public:
 	fuse(GraphicsInfo* r_GfxInfo);
 	virtual void Operate();	//Calculates the volt on both terminals
 	virtual void Draw(UI*);	//Draws the resistor
-	virtual void loadcircuit();
+	virtual void loadcircuit(int value, string files_name);
 };
