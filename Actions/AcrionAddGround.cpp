@@ -47,3 +47,4 @@ void ActionAddGround::Undo()
 void ActionAddGround::Redo()
 {}
 
+void ActionAddGround::loadcircuit(){}
