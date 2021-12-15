@@ -74,4 +74,4 @@ void ActionAddConnec::Undo()
 
 void ActionAddConnec::Redo()
 {}
-
+void ActionAddConnec::loadcircuit(){}
