@@ -15,7 +15,7 @@ UI::UI()
 	pWind = new window(width, height, wx, wy);	
 
 
-	ChangeTitle("Logic Simulator Project");
+	ChangeTitle("Electric circuit Simulator Project");
 
 	CreateDesignToolBar();	//Create the desgin toolbar
 	CreateStatusBar();		//Create Status bar
