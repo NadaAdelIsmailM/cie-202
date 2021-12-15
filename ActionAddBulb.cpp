@@ -59,4 +59,5 @@ void ActionAddBulb::Undo()
 
 void ActionAddBulb::Redo()
 {}
-
+void ActionAddBulb::loadcircuit()
+{}
