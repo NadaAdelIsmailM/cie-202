@@ -14,6 +14,5 @@ public:
 
 	Connection(GraphicsInfo *r_GfxInfo, Component *cmp1=nullptr, Component *cmp2=nullptr);
 	virtual void Draw(UI* );	
-        virtual void loadcircuit() = 0;
 
 };

@@ -39,16 +39,13 @@ class UI
 		//Note: Items are ordered here as they appear in the menu
 		//If you want to change the menu items order, just change the order here
 		ITM_RES,		//Resistor item in menu
-		ITM_SWITCH,
-		ITM_FUSE,
 		ITM_BULB,
 		ITM_BATTERY,
+		ITM_SWITCH,
 		ITM_GRND,
 		ITM_BUZZ,
+		ITM_FUSE,
 		ITM_CONNEC,
-		ITM_LOAD,
-		ITM_SIM,
-		ITM_EXIT,
 
 		ITM_EXIT,		//Exit item
 		//TODO: Add more items names here
@@ -62,7 +59,7 @@ class UI
 	{
 		//Note: Items are ordered here as they appear in menu
 		ITM_CIRC_SIM,	//Circuit Simulate menu item
-	        ITM_SIM_EXT,
+	
 		//TODO:Add more items names here
 	
 		ITM_SIM_CNT		//no. of simulation menu items ==> This should be the last line in this enum
@@ -120,8 +117,6 @@ public:
 		
 	// Draws a resistor
 	void DrawResistor(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
-	void DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
-	void DrawFuse(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	void DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	void DrawBulb(const GraphicsInfo& r_GfxInfo, bool selected = false,bool IsOn=true) const;
 	void DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected=false) const;

@@ -15,6 +15,3 @@ void Bulb::Operate()
 {
 
 }
-void Switch::loadcircuit() {
-
-}

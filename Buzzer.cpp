@@ -13,6 +13,3 @@ void Buzzer::Operate()
 {
 
 }
-void Switch::loadcircuit() {
-
-}

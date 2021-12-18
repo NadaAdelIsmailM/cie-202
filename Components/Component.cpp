@@ -21,7 +21,7 @@ bool Component::IsInRegion(int m_x, int m_y) const {
 
 }
 
-void Component::loadcircuit() {}
+
 
 Component::~Component()
 {

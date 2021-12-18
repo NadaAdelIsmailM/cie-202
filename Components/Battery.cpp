@@ -14,4 +14,3 @@ void Battery::Operate()
 {
 
 }
-void Battery::loadcircuit(){}

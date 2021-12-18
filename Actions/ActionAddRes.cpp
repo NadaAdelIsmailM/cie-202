@@ -45,4 +45,4 @@ void ActionAddRes::Undo()
 
 void ActionAddRes::Redo()
 {}
-void ActionAddRes::loadcircuit(){}
+

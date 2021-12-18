@@ -15,4 +15,3 @@ void Resistor::Operate()
 {
 
 }
-void Resistor::loadcircuit(){}

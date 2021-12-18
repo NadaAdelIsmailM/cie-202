@@ -41,7 +41,7 @@ public:
 	void AddComponent(Component* pComp);
 	void AddConnection(Connection* pConn);
 	bool ValidConnectionPoint(int x, int y,const Component* c1);
-        void Load(ifstream&myfile,string files_name);
+
 	//destructor
 	~ApplicationManager();
 };

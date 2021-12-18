@@ -53,5 +53,3 @@ void ActionAddBattery::Undo()
 
 void ActionAddBattery::Redo()
 {}
-void ActionAddRes::loadcircuit()
-{}

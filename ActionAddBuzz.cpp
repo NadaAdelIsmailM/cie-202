@@ -44,5 +44,4 @@ void ActionAddBuzz::Undo()
 
 void ActionAddBuzz::Redo()
 {}
-void ActionAddRes::loadcircuit()
-{}
+
